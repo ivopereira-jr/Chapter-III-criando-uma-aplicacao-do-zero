@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 
 import { format } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
+import { ptBR } from 'date-fns/locale';
 
 import Prismic from '@prismicio/client';
 import { getPrismicClient } from '../services/prismic';
@@ -100,11 +100,11 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
                 <p>{post.data.subtitle}</p>
                 <ul>
                   <li>
-                    <FiCalendar className={styles.iconCalendar} />
+                    <FiCalendar className={commonStyles.iconCalendar} />
                     {post.first_publication_date}
                   </li>
                   <li>
-                    <FiUser className={styles.iconUser} />
+                    <FiUser className={commonStyles.iconUser} />
                     {post.data.author}
                   </li>
                 </ul>
