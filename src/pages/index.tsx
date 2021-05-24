@@ -31,9 +31,13 @@ interface PostPagination {
 
 interface HomeProps {
   postsPagination: PostPagination;
+  preview: boolean;
 }
 
-export default function Home({ postsPagination }: HomeProps): JSX.Element {
+export default function Home({
+  postsPagination,
+  preview,
+}: HomeProps): JSX.Element {
   const formattedUpdatePost = postsPagination.results.map(post => {
     return {
       ...post,
@@ -111,22 +115,30 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
               </a>
             </Link>
           ))}
+          {nextPage && (
+            <button
+              type="button"
+              className={styles.loadmorePosts}
+              onClick={handleNextPage}
+            >
+              Carregar mais posts
+            </button>
+          )}
         </div>
-        {nextPage && (
-          <button
-            type="button"
-            className={styles.loadmorePosts}
-            onClick={handleNextPage}
-          >
-            Carregar mais posts
-          </button>
+
+        {preview && (
+          <aside>
+            <Link href="/api/exit-preview">
+              <a className={commonStyles.preview}>Sair do modo Preview</a>
+            </Link>
+          </aside>
         )}
       </main>
     </>
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const prismic = getPrismicClient();
   const postsResponse = await prismic.query(
     [Prismic.predicates.at('document.type', 'posts')],
@@ -156,6 +168,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       postsPagination,
+      preview,
     },
   };
 };

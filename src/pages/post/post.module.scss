@@ -22,35 +22,94 @@
     font-size: 1.125rem;
     font-weight: normal;
     line-height: 1.563rem;
+    text-align: justify;
     color: var(--body);
     margin-top: 1.563rem;
   }
-}
 
-.postInfo {
-  margin-bottom: 4rem;
+  .postInfo {
+    margin-bottom: 4rem;
 
-  h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    line-height: 3.625rem;
-    color: var(--heading);
-  }
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      line-height: 3.625rem;
+      color: var(--heading);
+    }
 
-  ul {
-    display: flex;
-    align-items: center;
-    margin-top: 1.5rem;
+    ul {
+      display: flex;
+      align-items: center;
+      margin-top: 1.5rem;
 
-    li {
-      color: var(--info);
-      font-size: 0.875rem;
-      font-weight: normal;
-      line-height: 1rem;
+      li {
+        color: var(--info);
+        font-size: 0.875rem;
+        font-weight: normal;
+        line-height: 1rem;
 
-      & + li {
-        margin-left: 1.563rem;
+        & + li {
+          margin-left: 1.563rem;
+        }
       }
     }
+
+    span {
+      display: block;
+      font-size: 0.875rem;
+      line-height: 1.063rem;
+      font-weight: normal;
+      font-style: italic;
+      color: var(--info);
+      margin-top: 1.125rem;
+    }
+  }
+
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-navigation);
+  position: relative;
+
+  h2 {
+    font-size: 1.125rem;
+    font-weight: normal;
+    color: var(--heading);
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--highlight);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--highlight);
+      opacity: 0;
+      transition: opacity 400ms;
+    }
+
+    &:hover:after {
+      opacity: 1;
+    }
+
+  }
+
+  div {
+    padding-top: 3.125rem;
+  }
+
+  div + div {
+    text-align: right;
   }
 }
